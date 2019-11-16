@@ -2,9 +2,9 @@
   "name": "proyecto-final-web",
   "version": "1.0.0",
   "description": "Store Garden final project ",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/DniGaytan/Proyecto-final-web#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "mongoose": "^5.7.11",
     "nodemon": "^1.19.4"

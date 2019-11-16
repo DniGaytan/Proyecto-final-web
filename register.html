@@ -6,9 +6,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/base.css">
-    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/register.css">
     <meta charset="utf-8">
-    <title> Login </title>
+    <title> Register </title>
   </head>
   <body>
 
@@ -31,13 +31,26 @@
         </div>-->
     </nav>
 
-
-
     <div id="body-wrapper" class="d-flex justify-content-center">
       <div class="card shadow-lg p-3 mb-5 bg-white rounded login-card" >
         <div class="card-body">
-          <h5 class="card-title" id="card-title">Login</h5>
+          <h5 class="card-title" id="card-title">Register</h5>
           <form>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Full Name</label>
+              <div class="row">
+                <div class="col">
+                  <input type="text" class="form-control" id="firstname-field" placeholder="First name">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" id="lastname-field" placeholder="Last name">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Username</label>
+              <input type="text" class="form-control" id="username-field" placeholder="Username">
+            </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Email address</label>
               <input type="email" class="form-control" id="email-field" placeholder="Enter email">
@@ -46,12 +59,16 @@
               <label for="exampleInputPassword1">Password</label>
               <input type="password" class="form-control" id="password-field" placeholder="Password">
             </div>
-            <button type="submit" class="btn btn-primary" id="submit-button">Login</button>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password confirmation</label>
+              <input type="password" class="form-control" id="password-confirmation-field" placeholder="Password confirmation">
+            </div>
+            <button type="submit" class="btn btn-primary" id="submit-button">Register</button>
           </form>
         </div>
       </div>
     </div>
 
-    <script type="text/javascript" src="./js/loginScript.js"></script>
+    <script type="text/javascript" src="./js/registerScript.js"></script>
   </body>
 </html>

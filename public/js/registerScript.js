@@ -6,6 +6,7 @@ $("#submit-button").on('click', (event) => {
   let emailValue = $("#email-field").val();
   let passwordValue = $("password-field").val();
 
+  console.log(firstname);
   if (firstname == "") {
     var wrapper = $("#firstname-field").parent();
     wrapper.append(' <small id="emailHelp" class="form-text text-muted">Passwords does not match</small> ')

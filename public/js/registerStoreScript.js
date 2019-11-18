@@ -1,7 +1,6 @@
 let storeLocation;
 let storeType;
 let storeImage;
-let data = 
 
 $("#submit-button").on('click', (e) => {
     e.preventDefault();

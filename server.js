@@ -1,7 +1,7 @@
 const express = require('express');
 //falta definir aqui las rutas
 //const routes = require('./routesFolder');
-const routes = require('./Routes/api');
+const routes = require('./Routes/users');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 

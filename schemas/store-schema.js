@@ -23,8 +23,6 @@ const storeSchema = new mongoose.Schema({
             type: String,
             required: true,
         },
-
-        required:true
     },
     storeType:{
         type:String,

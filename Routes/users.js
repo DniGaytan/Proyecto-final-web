@@ -1,5 +1,8 @@
 const express = require('express');
 const user = require('../schemas/user-schema');
+//let uuid = require('uuid');
+let parser = require('body-parser');
+let jsonP = parser.json();
 
 const router = express.Router();
 

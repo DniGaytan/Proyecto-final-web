@@ -1,8 +1,10 @@
 const express = require('express');
 const store = require('../schemas/store-schema');
-let uuid = require('uuid');
+//let uuid = require('uuid');
 let parser = require('body-parser');
 let jsonP = parser.json();
+
+const router = express.Router();
 
 //Registers New Store
 router.post('/register-store',function(req,res,next){
@@ -43,8 +45,10 @@ router.post('/register-store',function(req,res,next){
 });
 
 //get all the stores
-router.post('/get', (req, res) => {
+router.get('/get-stores', (req, res) => {
+    
     store.find().then((stores) => {
+        console.log(stores);
         return res.status(200).json(stores);
     }).catch( (e) => {
         res.statusMessage = "uups, db cannot be reached";
@@ -126,3 +130,5 @@ router.post('/get-by-location', jsonP, (req, res) => {
 
         return res.status(202).json(storesReturned);
 })
+
+module.exports = router;

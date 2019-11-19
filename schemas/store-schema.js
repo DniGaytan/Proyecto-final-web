@@ -1,9 +1,22 @@
 const mongoose = require('mongoose');
 
+const pointSchema = new mongoose.Schema({
+    type: {
+      type: String,
+      enum: ['Point'],
+      required: true
+    },
+    coordinates: {
+      type: [Number],
+      required: true
+    }
+  });
+  
+
 const storeSchema = new mongoose.Schema({
     storeId:{
         type:String,
-        required:true,
+        
     },
     storeName:{
         type:String,
@@ -14,27 +27,19 @@ const storeSchema = new mongoose.Schema({
         contentType:String
     },
     storeLocation:{
-        lat: {
-            type: String,
-            required: true,
-        },
-
-        lon: {
-            type: String,
-            required: true,
-        },
+        type: pointSchema,
+        required: true
     },
     storeType:{
         type:String,
-        required:true
+        required: true
     },
     storeItems:{
         type: [],
-        required:true,
     },
     storeManager:{
         type:String,
-        required:true
+        required: true
     }
 
 

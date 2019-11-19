@@ -12,7 +12,6 @@ $('#location-button').on('click', (e) => {
     navigator.geolocation.getCurrentPosition( (position) => {
       latCoord = position.coords.latitude;
       lonCoord = position.coords.longitude;
-
       var confirmationSmall = $("#confirmation-small");
       $(confirmationSmall).removeClass("invisible");
       $(confirmationSmall).addClass("visible");

@@ -8,18 +8,20 @@ const router = express.Router();
 
 //Registers New Store
 router.post('/register-store',function(req,res,next){
+    var lat = req.body.lat;
+    var lon =req.body.lon;
+    const location = {type:'Point',coordinates:[lon,lat]};
     var newStore = {
-        name : req.body.storeName,
+        storeName : req.body.storeName,
         storeImg : req.body.storeImg,
-        storeLocation : req.body.storelocation,
+        storeLocation:location,
         storeType: req.body.storeType,
         storeManager: req.body.storeManager,
     };
-
     var storeExists;
-
-    store.find({storeName : newStore.name}).then( (stores) => {
-
+    console.log("HI");
+    console.log(location);
+    store.find({storeName : newStore.storeName}).then( (stores) => {
         if(stores.length == 0){
             store.create(newStore).then( (store) => {
                 return res.status(202).json(store);
@@ -33,15 +35,15 @@ router.post('/register-store',function(req,res,next){
         else{
             res.statusMessage = "store already exists";
             return res.status(406).json({
-                message : res.statusMessage,
-            });
+              message : res.statusMessage,
+           });
         }
     }).catch( (e) => {
         res.statusMessage = "uups, db cannot be reached";
                 res.status(500).json({
-                    message : res.statusMessage,
+message : res.statusMessage,
                 });
-    });
+   });
 });
 
 //get all the stores

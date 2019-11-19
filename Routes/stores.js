@@ -38,3 +38,21 @@ router.post('/register-store',function(req,res,next){
                 });
     });
 });
+
+//get the required store by store id
+router.post('/get/:id', (req, res) => {
+    if(req.params.id != req.body.storeId){
+        res.statusMessage = "ids does not match";
+        return res.status(406).json({
+            message : res.statusMessage,
+        });
+    }
+    store.find({storeId: req.params.storeId}).then((stores) => {
+        return res.status(200).json(stores);
+    }).catch( (e) => {
+        res.statusMessage = "uups, db cannot be reached";
+                res.status(500).json({
+                    message : res.statusMessage,
+                });
+    })
+});

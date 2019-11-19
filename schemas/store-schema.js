@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const storeSchema = new mongoose.Schema({
+    storeId:{
+        type:String,
+        required:true,
+    },
     storeName:{
         type:String,
         required:true
@@ -19,17 +23,23 @@ const storeSchema = new mongoose.Schema({
             type: String,
             required: true,
         },
-        
+
         required:true
     },
     storeType:{
         type:String,
         required:true
     },
+    storeItems:{
+        type: [],
+        required:true,
+    },
     storeManager:{
         type:String,
         required:true
     }
+
+
 },{collection:'Store'});
 
 const Store = mongoose.model('Store',storeSchema);

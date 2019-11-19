@@ -1,24 +1,25 @@
 $("#submit-button").on('click', (event) => {
   event.preventDefault();
   let emailValue = $("#email-field").val();
-  let passwordValue = $("password-field").val();
+  let passwordValue = $("#password-field").val();
 
   data = {
-    email : emailValue,
-    password : passwordValue,
+    Email : emailValue,
+    Password : passwordValue
   }
-
+  console.log(data.Email);
+  console.log(data.Password);
   settings = {
-    url : asd ,//Aqui va el url al backend
+    url : "/login" ,//Aqui va el url al backend
     method : 'POST',
     data : JSON.stringify(data),
     datatype : 'JSON',
     contentType : "application/json",
     success : (response) => {
-      //hacemos algo.
+      console.log("User Found");
     },
     error : (response) => {
-      //hacemos algo.
+      console.log("Username/Password");
     }
   }
 

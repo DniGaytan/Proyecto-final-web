@@ -1,11 +1,15 @@
 const express = require('express');
 //falta definir aqui las rutas
 //const routes = require('./routesFolder');
-const routes = require('./Routes/users');
+
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const app = express();
+
+
+let users = require('./Routes/users');
+
 
 //se conecta a la base de datos, si no existe la crea
 mongoose.set('useNewUrlParser', true);
@@ -17,7 +21,7 @@ app.use(express.static('public'));
 
 app.use(bodyParser.json());
 
-app.use(routes);
+app.use(users);
 
 
 app.listen(8080,function(){

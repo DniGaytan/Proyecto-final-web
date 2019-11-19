@@ -38,6 +38,16 @@ router.post('/register',function(req,res,next){
     console.log('userCreated');
 });
 
-
+//get user by storeId
+router.post('/get-by-store/:id', jsonP, (req, res) => {
+    user.find({Stores : {$elemMatch: {storedId: req.params.id}}}).then( (stores) => {
+        return res.status(200).json(stores);
+    }).catch( (e) => {
+        res.statusMessage = "uups, db cannot be reached";
+        res.status(500).json({
+            message : res.statusMessage,
+        });
+    });
+});
 
 module.exports = router;

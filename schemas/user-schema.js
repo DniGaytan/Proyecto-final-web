@@ -26,9 +26,12 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
-    Stores:{
-        type: [],
-    }
+    Stores:[
+        {
+            storeId: String,
+            required:true,
+        },
+    ]
 },{collection:'User'});
 
 const User =  mongoose.model('User',userSchema);

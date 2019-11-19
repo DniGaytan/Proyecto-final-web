@@ -87,5 +87,42 @@ router.post('/get-by-manager/:id', jsonP, (req, res) => {
                 res.status(500).json({
                     message : res.statusMessage,
                 });
-    })
+    });
 });
+
+//get the stores by location {lat: string, lon: string}
+router.post('/get-by-location', jsonP, (req, res) => {
+    var storesReturned;
+    for(var tempLatPos = req.body.lat, tempLatNeg = req.body.lat;
+        tempLatPos < (req.body.lat + 100) && tempLatNeg > (req.body.lat - 100); tempLatPos++, tempLatNeg--){
+            for(var tempLonPos = req.body.lon, tempLonNeg = req.body.lon;
+                tempLonPos < (req.body.lon + 100) && tempLonNeg > (req.body.lon - 100); tempLonPos++, tempLonNeg--){
+                    store.find({storeLocation : {tempLatPos, tempLonPos}}).then((stores) => {
+                        storesReturned = stores;
+                    }).catch( (e) => {
+                        res.statusMessage = "uups, db cannot be reached";
+                                res.status(500).json({
+                                    message : res.statusMessage,
+                                });
+                    });
+                    store.find({storeLocation : {tempLatNeg, tempLonNeg}}).then((stores) => {
+                        storesReturne.push(stores);
+                    }).catch( (e) => {
+                        res.statusMessage = "uups, db cannot be reached";
+                                res.status(500).json({
+                                    message : res.statusMessage,
+                                });
+                    });
+                    store.find({storeLocation : {tempLatPos, tempLonNeg}}).then((stores) => {
+                        storesReturned.push(stores);
+                    }).catch( (e) => {
+                        res.statusMessage = "uups, db cannot be reached";
+                                res.status(500).json({
+                                    message : res.statusMessage,
+                                });
+                    });
+                }
+        }
+
+        return res.status(202).json(storesReturned);
+})

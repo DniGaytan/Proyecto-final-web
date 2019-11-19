@@ -1,6 +1,27 @@
 let storeLocation;
 let storeType;
 let storeImage;
+let latCoord;
+let lonCoord;
+
+$('#location-button').on('click', (e) => {
+  e.preventDefault();
+
+
+  if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition( (position) => {
+      latCoord = position.coords.latitude;
+      lonCoord = position.coords.longitude;
+
+      var confirmationSmall = $("#confirmation-small");
+      $(confirmationSmall).removeClass("invisible");
+      $(confirmationSmall).addClass("visible");
+    });
+  }
+  else{
+    alert("geolocation is not supported by your browser");
+  }
+});
 
 $("#submit-button").on('click', (e) => {
     e.preventDefault();
@@ -26,15 +47,15 @@ $("#submit-button").on('click', (e) => {
           //hacemos algo.
         }
     }
-    
+
     $.ajax(settings);
 });
 
-$('#storeLocations').change(function (e) { 
+$('#storeLocations').change(function (e) {
     storeLocation = $('#storeLocations').val();
 });
 
-$('#storeType').change(function (e) { 
+$('#storeType').change(function (e) {
     storeType = $('#storeType').val();
 });
 

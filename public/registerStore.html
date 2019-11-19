@@ -30,8 +30,6 @@
         </div>-->
     </nav>
 
-
-
     <div id="body-wrapper" class="d-flex justify-content-center">
       <div class="card shadow-lg p-3 mb-5 bg-white rounded storeRegister-card" >
         <div class="card-body">
@@ -46,19 +44,25 @@
                 <input type="file" accept="image/*" class="form-control" id="storeImage">
             </div>
             <div class="form-group">
-                <label for="storeLocation">Store Location</label>
-                <select id="storeLocations">
-                    <option disabled selected value> -- select an option -- </option>
-                    <option value="Monterrey">Monterrey</option>
-                    <option value="Saltillo">Saltillo</option>
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="locationInput">Location:</label>
+                <select class="custom-select" id="locationInput">
+                  <option selected>Not now</option>
+                  <option id="location-opt">Use my location</option>
                 </select>
+              </div>
+
             </div>
             <div class="form-group">
-                    <label for="storeType">Store Type</label>
-                    <select id="storeType">
-                        <option disabled selected value> -- select an option -- </option>
-                        <option value="Store">Store</option>
-                    </select>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">Store Type:</label>
+                </div>
+                <select class="custom-select" id="inputGroupSelect01">
+                  <option selected>Any</option>
+                  <option value="1">Retailer</option>
+                </select>
+              </div>
             </div>
             <button type="button" class="btn btn-danger" id="cancel-button">Cancel</button>
             <button type="submit" class="btn btn-primary" id="submit-button">Submit</button>

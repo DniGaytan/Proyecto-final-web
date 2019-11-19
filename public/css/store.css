@@ -12,7 +12,7 @@
 }
 
 #information-wrapper{
-
+  margin-top: 20px;
 }
 
 #inner-information-wrapper{
@@ -30,6 +30,10 @@
 #products-wrapper{
   padding-top: 1%;
   margin-bottom: 100px;
+}
+
+#inner-products-wrapper{
+  margin-left: 30px;
 }
 
 .product-card-wrapper{

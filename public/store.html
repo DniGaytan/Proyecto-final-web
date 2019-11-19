@@ -17,11 +17,13 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
                 <a class="nav-link" href="#">My stores</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Orders dashboard</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Find stores</a>
@@ -65,8 +67,8 @@
       </div>
 
       <div class="container" id="products-wrapper">
-        <div class="row">
-          <div class="col-4 product-card-wrapper">
+        <div class="row" id="inner-products-wrapper">
+          <div class="col-md-6 col-sm-6 col-lg-3 product-card-wrapper">
             <div class="card product-card" style="width: 18rem;">
               <img src="https://dummyimage.com/150x150/000000/fff.png&text=Aguacate" class="card-img-top" style="min-height: 150px; max-height: 150px;">
               <div class="card-body " align="center">
@@ -83,95 +85,11 @@
                     <label class="input-group-text" for="inputGroupSelect01">Add: </label>
                   </div>
                   <select class="custom-select" id="inputGroupSelect01">
-                    <option selected>1</option>
-                    <option value="1">2</option>
-                    <option value="2">3</option>
-                    <option value="3">4</option>
-                    <option value="3">5</option>
-                  </select>
-                </div>
-                <a href="#" class="card-link">Add to cart</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-4 product-card-wrapper">
-            <div class="card product-card" style="width: 18rem;">
-              <img src="https://dummyimage.com/150x150/000000/fff.png&text=Aguacate" class="card-img-top" style="min-height: 150px; max-height: 150px;">
-              <div class="card-body " align="center">
-                <p class="card-text">Aguacate</p>
-              </div>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">Price: $123.4 </li>
-                <li class="list-group-item">Discount: 5%</li>
-                <li class="list-group-item">Available: 5 pcs </li>
-              </ul>
-              <div class="card-body">
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <label class="input-group-text" for="inputGroupSelect01">Add: </label>
-                  </div>
-                  <select class="custom-select" id="inputGroupSelect01">
-                    <option selected>1</option>
-                    <option value="1">2</option>
-                    <option value="2">3</option>
-                    <option value="3">4</option>
-                    <option value="3">5</option>
-                  </select>
-                </div>
-                <a href="#" class="card-link">Add to cart</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-4 product-card-wrapper">
-            <div class="card product-card" style="width: 18rem;">
-              <img src="https://dummyimage.com/150x150/000000/fff.png&text=Aguacate" class="card-img-top" style="min-height: 150px; max-height: 150px;">
-              <div class="card-body " align="center">
-                <p class="card-text">Aguacate</p>
-              </div>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">Price: $123.4 </li>
-                <li class="list-group-item">Discount: 5%</li>
-                <li class="list-group-item">Available: 5 pcs </li>
-              </ul>
-              <div class="card-body">
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <label class="input-group-text" for="inputGroupSelect01">Add: </label>
-                  </div>
-                  <select class="custom-select" id="inputGroupSelect01">
-                    <option selected>1</option>
-                    <option value="1">2</option>
-                    <option value="2">3</option>
-                    <option value="3">4</option>
-                    <option value="3">5</option>
-                  </select>
-                </div>
-                <a href="#" class="card-link">Add to cart</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-4 product-card-wrapper">
-            <div class="card product-card" style="width: 18rem;">
-              <img src="https://dummyimage.com/150x150/000000/fff.png&text=Aguacate" class="card-img-top" style="min-height: 150px; max-height: 150px;">
-              <div class="card-body " align="center">
-                <p class="card-text">Aguacate</p>
-              </div>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">Price: $123.4 </li>
-                <li class="list-group-item">Discount: 5%</li>
-                <li class="list-group-item">Available: 5 pcs </li>
-              </ul>
-              <div class="card-body">
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <label class="input-group-text" for="inputGroupSelect01">Add: </label>
-                  </div>
-                  <select class="custom-select" id="inputGroupSelect01">
-                    <option selected>1</option>
-                    <option value="1">2</option>
-                    <option value="2">3</option>
-                    <option value="3">4</option>
-                    <option value="3">5</option>
+                    <option value="1" selected>1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
                   </select>
                 </div>
                 <a href="#" class="card-link">Add to cart</a>

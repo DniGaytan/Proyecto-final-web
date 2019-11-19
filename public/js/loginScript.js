@@ -7,8 +7,8 @@ $("#submit-button").on('click', (event) => {
     Email : emailValue,
     Password : passwordValue
   }
-  console.log(data.Email);
-  console.log(data.Password);
+  console.log("Email: " + data.Email);
+  console.log("Password: " + data.Password);
   settings = {
     url : "/login" ,//Aqui va el url al backend
     method : 'POST',

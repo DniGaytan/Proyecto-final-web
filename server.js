@@ -2,9 +2,10 @@ const express = require('express');
 const session = require('express-session');
 //falta definir aqui las rutas
 //const routes = require('./routesFolder');
-
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
+
 
 const app = express();
 
@@ -26,6 +27,8 @@ app.use(bodyParser.json());
 app.use(users);
 
 app.use(stores);
+
+app.use(cookieParser());
 
 
 app.listen(8080,function(){

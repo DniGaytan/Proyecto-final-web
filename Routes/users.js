@@ -4,6 +4,7 @@ const user = require('../schemas/user-schema');
 let parser = require('body-parser');
 let jsonP = parser.json();
 
+
 const router = express.Router();
 
 //Verifies login credentials
@@ -20,7 +21,7 @@ router.post('/login',function(req,res){
         if(!userF){
             return res.status(404).send();
         }
-        console.log(userF);
+        res.cookie('Email',userF.Email).send('cookie set');
         return res.status(200).send();
     })
 });

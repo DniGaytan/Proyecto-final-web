@@ -18,12 +18,11 @@ router.post('/register-store',function(req,res,next){
         storeType: req.body.storeType,
         storeManager: req.body.storeManager,
     };
-    var storeExists;
-    console.log("HI");
-    console.log(location);
     store.find({storeName : newStore.storeName}).then( (stores) => {
         if(stores.length == 0){
             store.create(newStore).then( (store) => {
+                console.log(store.storeLocation.coordinates[0]);
+                console.log(store.storeLocation.coordinates[1]);
                 return res.status(202).json(store);
             }).catch( (e) => {
                 res.statusMessage = "uups, db cannot be reached";
@@ -41,7 +40,7 @@ router.post('/register-store',function(req,res,next){
     }).catch( (e) => {
         res.statusMessage = "uups, db cannot be reached";
                 res.status(500).json({
-message : res.statusMessage,
+                    message : res.statusMessage,
                 });
    });
 });

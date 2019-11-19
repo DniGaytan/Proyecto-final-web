@@ -1,0 +1,28 @@
+#content-wrapper{
+
+}
+
+#banner-wrapper{
+  height: 300px;
+}
+
+#img-banner{
+  max-height: 100%;
+  max-width: 100%;
+}
+
+#information-wrapper{
+
+}
+
+#inner-information-wrapper{
+  padding-top: 1%;
+}
+
+#contact-wrapper{
+  min-height: 100%;
+}
+
+#description-wrapper{
+  min-height: 100%;
+}

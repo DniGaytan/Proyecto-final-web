@@ -21,6 +21,9 @@ const userSchema = new mongoose.Schema({
     Password:{
         type:String,
         required:true,
+    },
+    Stores:{
+        type: [],
     }
 },{collection:'User'});
 

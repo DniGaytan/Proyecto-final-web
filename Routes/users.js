@@ -41,7 +41,7 @@ router.post('/register',function(req,res,next){
 
 //Registers New Store
 router.post('/register',function(req,res,next){
-    
+
 });
 
 module.exports = router;

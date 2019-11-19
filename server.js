@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 //falta definir aqui las rutas
 //const routes = require('./routesFolder');
 

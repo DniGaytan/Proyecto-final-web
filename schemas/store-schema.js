@@ -10,7 +10,16 @@ const storeSchema = new mongoose.Schema({
         contentType:String
     },
     storeLocation:{
-        type:String,
+        lat: {
+            type: String,
+            required: true,
+        },
+
+        lon: {
+            type: String,
+            required: true,
+        },
+        
         required:true
     },
     storeType:{

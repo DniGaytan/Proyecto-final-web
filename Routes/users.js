@@ -4,7 +4,6 @@ const user = require('../schemas/user-schema');
 const router = express.Router();
 
 //Verifies login credentials
-//
 router.post('/login',function(req,res){
     let LoginUser={
         Email:req.body.Email,
@@ -39,9 +38,6 @@ router.post('/register',function(req,res,next){
     console.log('userCreated');
 });
 
-//Registers New Store
-router.post('/register',function(req,res,next){
 
-});
 
 module.exports = router;

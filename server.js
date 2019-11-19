@@ -10,9 +10,10 @@ const app = express();
 
 
 let users = require('./Routes/users');
+let stores = require('./Routes/stores');
 
 
-//se conecta a la base de datos, si no existe la crea
+//se conecta a la base de datos. Si no existe, la crea
 mongoose.set('useNewUrlParser', true);
 mongoose.connect('mongodb://localhost/StoreGarden',{ useUnifiedTopology: true });
 
@@ -23,6 +24,8 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 
 app.use(users);
+
+app.use(stores);
 
 
 app.listen(8080,function(){

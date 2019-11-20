@@ -27,7 +27,7 @@ function appendStores(stores){
                     <p class="card-text">${stores[i].storeName}</p>
                 </div>
                 <div class="card-body d-flex justify-content-center">
-                    <a class="card-link go-to-store-a">Go to store</a>
+                    <button class="btn btn-primary go-to-store-a" id="${stores[i].storeId}">Go to store</button>
                 </div>
                 </div>
             </div>

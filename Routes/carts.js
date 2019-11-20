@@ -1,5 +1,5 @@
 const express = require('express');
-const store = require('../schemas/store-schema');
+const cart = require('../schemas/cart-schema');
 //let uuid = require('uuid');
 let parser = require('body-parser');
 let jsonP = parser.json();

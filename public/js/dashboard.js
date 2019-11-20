@@ -1,5 +1,4 @@
 function init(){
-    if(document.cookie != ""){
       //gets only the value of the cookie, without the name
       var re = new RegExp(name + "=([^;]+)");
       var value = re.exec(document.cookie);
@@ -15,7 +14,6 @@ function init(){
           window.location.replace("../login.html");
         }
       });
-    }
 };
 
 init();

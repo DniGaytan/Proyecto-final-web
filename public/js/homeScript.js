@@ -34,3 +34,8 @@ function appendStores(stores){
         `)
     }
 };
+
+$('#logout').on('submit', (event) => {
+    event.preventDefault();
+    
+});

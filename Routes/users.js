@@ -3,7 +3,7 @@ const user = require('../schemas/user-schema');
 //let uuid = require('uuid');
 let parser = require('body-parser');
 let jsonP = parser.json();
-
+const path = require('path');
 
 const router = express.Router();
 
@@ -19,9 +19,12 @@ router.post('/login',function(req,res){
             return res.status(500).send();
         }
         if(!userF){
+            //if cookie refers to an email not found in the database the cookie is destroyed
+            res.clearCookie('Email');
             return res.status(404).send();
         }
-        res.cookie('Email',userF.Email).send('cookie set');
+
+        res.cookie('Email',userF.Email, { maxAge: 9000000 });
         return res.status(200).send();
     })
 });
@@ -54,4 +57,19 @@ router.post('/get-by-store/:id', jsonP, (req, res) => {
     });
 });
 
+//validates that the user can actually see the page
+router.post('/home',(req,res)=>{
+    console.log(req.body.Email);
+    user.findOne({Email:req.body.Email},function(err,userF){
+        if(err){
+            console.log(err);
+            return res.status(500).send();
+        }
+        if(!userF){
+            res.clearCookie('Email');
+            return res.status(404).send();
+        }
+        return res.status(200).send();
+    })
+})
 module.exports = router;

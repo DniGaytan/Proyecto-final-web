@@ -49,7 +49,6 @@ router.post('/register-store',function(req,res,next){
 router.get('/get-stores', (req, res) => {
     
     store.find().then((stores) => {
-        console.log(stores);
         return res.status(200).json(stores);
     }).catch( (e) => {
         res.statusMessage = "uups, db cannot be reached";

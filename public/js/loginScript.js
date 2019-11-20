@@ -1,3 +1,29 @@
+function init(){
+  if(document.cookie != ""){
+    //gets only the value of the cookie, without the name
+    var re = new RegExp(name + "=([^;]+)");
+    var value = re.exec(document.cookie);
+    //ajax call to validate if user is already logged in
+    $.ajax({
+      url: '/home',
+      method:'POST',
+      contentType:'application/json',
+      data:JSON.stringify({
+        Email:value[1]
+      }),
+      success:(response) =>{
+        console.log('YES');
+        window.location.replace("../home.html");
+      },
+      error : (response) => { 
+        console.log('No');
+        window.location.replace("../login.html");
+      }
+    });
+  }
+};
+
+
 $("#submit-button").on('click', (event) => {
   event.preventDefault();
   let emailValue = $("#email-field").val();
@@ -17,6 +43,7 @@ $("#submit-button").on('click', (event) => {
     contentType : "application/json",
     success : (response) => {
       console.log("User Found");
+      window.location.replace("../home.html");
     },
     error : (response) => {
       console.log("Username/Password");
@@ -25,3 +52,5 @@ $("#submit-button").on('click', (event) => {
 
   $.ajax(settings);
 });
+
+init();

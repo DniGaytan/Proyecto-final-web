@@ -24,6 +24,7 @@ function init(){
     });
   }
 };
+
 $("#submit-button").on('click', (event) => {
   event.preventDefault();
   let firstname = $("#firstname-field");
@@ -44,13 +45,8 @@ $("#submit-button").on('click', (event) => {
         Password:passwordValue.val()
       }),
       success:function(res){
-        firstname.val('');
-        lastname.val('');
-        username.val('');
-        emailValue.val('');
-        passwordValue.val('');
-        passwordConfirmValue.val('');
-      }
+        window.location.replace("../home.html");
+      },
     });
 });
 init();

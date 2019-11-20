@@ -39,8 +39,9 @@ router.post('/register',function(req,res,next){
         Password:req.body.Password,
     }
     user.create(newUser)
-        .then(function(New){
-            res.send(New);
+        .then(function(NewUser){
+            res.cookie('Email',NewUser.Email, { maxAge: 9000000 });
+            res.send(NewUser);
         });
     console.log('userCreated');
 });

@@ -4,7 +4,6 @@ const cartSchema = new mongoose.Schema({
     cartProducts : [
       {
         productId: String,
-        productQuantity: String,
       }
     ]
 },{collection:'Cart'});

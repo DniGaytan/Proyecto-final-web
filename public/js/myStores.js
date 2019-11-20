@@ -1,3 +1,5 @@
+//validates user credential saven in a cookie
+//if they do not exist the user is redirected to login.html
 function init(){
       //gets only the value of the cookie, without the name
       var re = new RegExp(name + "=([^;]+)");
@@ -18,6 +20,7 @@ function init(){
 
 init();
 
+//Destroys cookie object
 $('#logout').on('click', (event) => {
     event.preventDefault();
     var re = new RegExp(name + "=([^;]+)");
@@ -34,7 +37,7 @@ $('#logout').on('click', (event) => {
         }
       });
 });
-
+//Navigation to find Stores View
 $('#findStores').on('click', (event) => {
     event.preventDefault();
     var re = new RegExp(name + "=([^;]+)");
@@ -51,7 +54,7 @@ $('#findStores').on('click', (event) => {
         }
       });
 });
-
+//Navigation to Orders Dashboard view
 $('#ordersDashboard').on('click', (event) => {
     event.preventDefault();
     var re = new RegExp(name + "=([^;]+)");
@@ -72,7 +75,7 @@ $('#ordersDashboard').on('click', (event) => {
       });
 });
 
-
+//Navigation to Home view
 $('#home').on('click', (event) => {
     event.preventDefault();
     var re = new RegExp(name + "=([^;]+)");

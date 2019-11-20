@@ -16,7 +16,7 @@ const pointSchema = new mongoose.Schema({
 const storeSchema = new mongoose.Schema({
     storeId:{
         type:String,
-        
+        required:true
     },
     storeName:{
         type:String,
@@ -48,8 +48,6 @@ const storeSchema = new mongoose.Schema({
         type: String,
         required:true,
     }}],
-
-
 },{collection:'Store'});
 
 const Store = mongoose.model('Store',storeSchema);

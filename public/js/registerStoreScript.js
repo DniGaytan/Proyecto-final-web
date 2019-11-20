@@ -29,12 +29,14 @@ $("#submit-button").on('click', (e) => {
     data = {
         storeName : storeNameValue,
         storeImage : storeImage,
-        storeLocation:storeLocation,
+        lat:latCoord,
+        lon:lonCoord,
         storeType:storeType
       }
-
+      console.log(latCoord);
+      console.log(storeType);
     settings = {
-        url : asd ,//Aqui va el url al backend
+        url : '/register-store' ,//Aqui va el url al backend
         method : 'POST',
         data : JSON.stringify(data),
         datatype : 'JSON',
@@ -54,8 +56,8 @@ $('#storeLocations').change(function (e) {
     storeLocation = $('#storeLocations').val();
 });
 
-$('#storeType').change(function (e) {
-    storeType = $('#storeType').val();
+$('.custom-select').change(function (e) {
+    storeType = $('.custom-select').val();
 });
 
 $(":file").change(function(e){

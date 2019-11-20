@@ -1,5 +1,8 @@
+//validates user credential saven in a cookie
+//if they do not exist the user is redirected to login.html
 function init(){
     //gets only the value of the cookie, without the name
+    if(document.cookies != ""){
     var re = new RegExp(name + "=([^;]+)");
     var value = re.exec(document.cookie);
     //ajax call to validate if user is already logged in
@@ -19,6 +22,7 @@ function init(){
         window.location.replace("../login.html");
       }
     });
+  }
 };
 $("#submit-button").on('click', (event) => {
   event.preventDefault();

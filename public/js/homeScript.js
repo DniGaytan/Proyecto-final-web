@@ -16,7 +16,9 @@ function init(){
         }
       });
     }
-  };
+};
+
+init();
 
 $(document).ready(() => {
     var settings = {
@@ -71,4 +73,59 @@ $('#logout').on('click', (event) => {
       });
 });
 
-init();
+$('#findStores').on('click', (event) => {
+    event.preventDefault();
+    var re = new RegExp(name + "=([^;]+)");
+    var value = re.exec(document.cookie);
+    $.ajax({
+        url: '/validate',
+        method:'POST',
+        contentType:'application/json',
+        data:JSON.stringify({
+          Email:value[1]
+        }),
+        success:(response) =>{
+          window.location.href = "../findstores.html";
+        }
+      });
+});
+
+$('#myStores').on('click', (event) => {
+    event.preventDefault();
+    var re = new RegExp(name + "=([^;]+)");
+    var value = re.exec(document.cookie);
+    $.ajax({
+        url: '/validate',
+        method:'POST',
+        contentType:'application/json',
+        data:JSON.stringify({
+          Email:value[1]
+        }),
+        success:(response) =>{
+            window.location.href = "../mystores.html";
+        },
+        error:(response)=>{
+            window.location.replace("../login.html");
+        }
+      });
+});
+
+$('#ordersDashboard').on('click', (event) => {
+    event.preventDefault();
+    var re = new RegExp(name + "=([^;]+)");
+    var value = re.exec(document.cookie);
+    $.ajax({
+        url: '/validate',
+        method:'POST',
+        contentType:'application/json',
+        data:JSON.stringify({
+          Email:value[1]
+        }),
+        success:(response) =>{
+            window.location.href = "../dashboard.html";
+        },
+        error:(response)=>{
+            window.location.replace("../login.html");
+        }
+      });
+});

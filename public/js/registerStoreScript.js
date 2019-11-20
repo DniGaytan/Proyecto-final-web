@@ -4,6 +4,26 @@ let storeImage;
 let latCoord;
 let lonCoord;
 
+function init(){
+  //gets only the value of the cookie, without the name
+  var re = new RegExp(name + "=([^;]+)");
+  var value = re.exec(document.cookie);
+  //ajax call to validate if user is already logged in
+  $.ajax({
+    url: '/validate',
+    method:'POST',
+    contentType:'application/json',
+    data:JSON.stringify({
+      Email:value[1]
+    }),
+    error : (response) => { 
+      window.location.replace("../login.html");
+    }
+  });
+};
+
+init();
+
 $('#location-button').on('click', (e) => {
   e.preventDefault();
 
@@ -25,7 +45,6 @@ $('#location-button').on('click', (e) => {
 $("#submit-button").on('click', (e) => {
     e.preventDefault();
     let storeNameValue = $('#storeName').val();
-
     data = {
         storeName : storeNameValue,
         storeImage : storeImage,

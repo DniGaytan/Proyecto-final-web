@@ -17,14 +17,15 @@ function init(){
         }
       });
 };
-
 init();
-
 //Destroys cookie object
 $('#logout').on('click', (event) => {
     event.preventDefault();
     var re = new RegExp(name + "=([^;]+)");
     var value = re.exec(document.cookie);
+    if(value[1] == undefined){
+      window.location.replace("../login.html");
+    }
     $.ajax({
         url: '/logout',
         method:'POST',
@@ -38,10 +39,14 @@ $('#logout').on('click', (event) => {
       });
 });
 
+
 $('#ordersDashboard').on('click', (event) => {
     event.preventDefault();
     var re = new RegExp(name + "=([^;]+)");
     var value = re.exec(document.cookie);
+    if(value[1] == undefined){
+      window.location.replace("../login.html");
+    }
     $.ajax({
         url: '/validate',
         method:'POST',
@@ -62,6 +67,9 @@ $('#myStores').on('click', (event) => {
     event.preventDefault();
     var re = new RegExp(name + "=([^;]+)");
     var value = re.exec(document.cookie);
+    if(value[1] == undefined){
+      window.location.replace("../login.html");
+    }
     $.ajax({
         url: '/validate',
         method:'POST',
@@ -83,6 +91,9 @@ $('#home').on('click', (event) => {
     event.preventDefault();
     var re = new RegExp(name + "=([^;]+)");
     var value = re.exec(document.cookie);
+    if(value[1] == undefined){
+      window.location.replace("../login.html");
+    }
     $.ajax({
         url: '/validate',
         method:'POST',
@@ -99,3 +110,41 @@ $('#home').on('click', (event) => {
       });
 });
 
+
+//Filter stores close to some coordinates
+$('#location-find-button').on('click', (event) => {
+  event.preventDefault();
+  let lon = -100.292004;
+  let lat = 25.621288;
+  var settings = {
+    url : '/get-stores',
+    method : 'GET',
+    contentType : "application/json",
+    success : (response) => {
+      console.log(response[0].storeLocation.coordinates[1] + " " + response[0].storeLocation.coordinates[0]);
+        $.ajax({
+          url:'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lon+'&key=AIzaSyBHt_0k-RkQi4pDHhPKkkoYuJXsk1Lb1SI',
+          success:(res)=>{
+            console.log(res);
+            Object.keys(response).forEach(function(key){
+              console.log(response[key].storeLocation.coordinates[1] + " " + response[key].storeLocation.coordinates[0]);
+                $.ajax({
+                  url:'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + response[key].storeLocation.coordinates[1] + ',' + response[key].storeLocation.coordinates[0]+'&key=AIzaSyBHt_0k-RkQi4pDHhPKkkoYuJXsk1Lb1SI',
+                  success:(validateStore)=>{
+                    console.log(validateStore);
+                  }
+                })
+              })
+            }
+        })
+    },
+    error : (error) => {
+        console.log(error);
+    },
+}
+
+$.ajax(settings);
+});
+
+
+//https://maps.googleapis.com/maps/api/geocode/json?latlng=25.484049, -100.187026&key=AIzaSyBHt_0k-RkQi4pDHhPKkkoYuJXsk1Lb1SI

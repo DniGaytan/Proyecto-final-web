@@ -60,7 +60,10 @@ function appendStores(stores){
 $('#logout').on('click', (event) => {
     event.preventDefault();
     var re = new RegExp(name + "=([^;]+)");
-      var value = re.exec(document.cookie);
+    var value = re.exec(document.cookie);
+    if(value[1] == undefined){
+      window.location.replace("../login.html");
+    }
     $.ajax({
         url: '/logout',
         method:'POST',
@@ -78,6 +81,9 @@ $('#findStores').on('click', (event) => {
     event.preventDefault();
     var re = new RegExp(name + "=([^;]+)");
     var value = re.exec(document.cookie);
+    if(value[1] == undefined){
+      window.location.replace("../login.html");
+    }
     $.ajax({
         url: '/validate',
         method:'POST',
@@ -95,6 +101,9 @@ $('#myStores').on('click', (event) => {
     event.preventDefault();
     var re = new RegExp(name + "=([^;]+)");
     var value = re.exec(document.cookie);
+    if(value[1] == undefined){
+      window.location.replace("../login.html");
+    }
     $.ajax({
         url: '/validate',
         method:'POST',
@@ -115,6 +124,9 @@ $('#ordersDashboard').on('click', (event) => {
     event.preventDefault();
     var re = new RegExp(name + "=([^;]+)");
     var value = re.exec(document.cookie);
+    if(value[1] == undefined){
+      window.location.replace("../login.html");
+    }
     $.ajax({
         url: '/validate',
         method:'POST',

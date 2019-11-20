@@ -12,6 +12,8 @@ const app = express();
 
 let users = require('./Routes/users');
 let stores = require('./Routes/stores');
+let products = require('./Routes/products');
+
 
 
 //se conecta a la base de datos. Si no existe, la crea
@@ -27,6 +29,8 @@ app.use(bodyParser.json());
 app.use(users);
 
 app.use(stores);
+
+app.user(products);
 
 app.use(cookieParser());
 

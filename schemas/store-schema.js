@@ -37,10 +37,17 @@ const storeSchema = new mongoose.Schema({
     storeItems:{
         type: [],
     },
+    storeDescription:{
+        type: String,
+    },
     storeManager:{
         type:String,
         required: true
-    }
+    },
+    Products:[{productId: {
+        type: String,
+        required:true,
+    }}],
 
 
 },{collection:'Store'});

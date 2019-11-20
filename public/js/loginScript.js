@@ -5,7 +5,7 @@ function init(){
     var value = re.exec(document.cookie);
     //ajax call to validate if user is already logged in
     $.ajax({
-      url: '/home',
+      url: '/validate',
       method:'POST',
       contentType:'application/json',
       data:JSON.stringify({

@@ -58,8 +58,7 @@ router.post('/get-by-store/:id', jsonP, (req, res) => {
 });
 
 //validates that the user can actually see the page
-router.post('/home',(req,res)=>{
-    console.log(req.body.Email);
+router.post('/validate',(req,res)=>{
     user.findOne({Email:req.body.Email},function(err,userF){
         if(err){
             console.log(err);
@@ -71,5 +70,12 @@ router.post('/home',(req,res)=>{
         }
         return res.status(200).send();
     })
-})
+});
+
+//ends user session
+router.post('/logout',(req,res)=>{
+    res.clearCookie('Email');
+    return res.status(200).send();
+});
+
 module.exports = router;

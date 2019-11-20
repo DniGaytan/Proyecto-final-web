@@ -30,7 +30,7 @@ app.use(users);
 
 app.use(stores);
 
-app.user(products);
+app.use(products);
 
 app.use(cookieParser());
 

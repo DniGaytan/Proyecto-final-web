@@ -47,7 +47,7 @@ router.post('/register-store',function(req,res,next){
 
 //get all the stores
 router.get('/get-stores', (req, res) => {
-    
+
     store.find().then((stores) => {
         return res.status(200).json(stores);
     }).catch( (e) => {
@@ -127,7 +127,6 @@ router.post('/get-by-location', jsonP, (req, res) => {
                     });
                 }
         }
-
         return res.status(202).json(storesReturned);
 })
 

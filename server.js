@@ -13,6 +13,7 @@ const app = express();
 let users = require('./Routes/users');
 let stores = require('./Routes/stores');
 let products = require('./Routes/products');
+let carts = require('./Route/carts');
 
 
 
@@ -31,6 +32,8 @@ app.use(users);
 app.use(stores);
 
 app.use(products);
+
+app.use(carts);
 
 app.use(cookieParser());
 

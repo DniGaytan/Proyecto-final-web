@@ -11,13 +11,9 @@ const pointSchema = new mongoose.Schema({
       required: true
     }
   });
-  
+
 
 const storeSchema = new mongoose.Schema({
-    storeId:{
-        type:String,
-        required:true
-    },
     storeName:{
         type:String,
         required:true

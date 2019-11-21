@@ -12,7 +12,7 @@ function initMap() {
     //Map options.
     var options = {
       center: centerOfMap, //Set center.
-      zoom: 7 //The zoom value.
+      zoom: 11 //The zoom value.
     };
  
     //Create the map object.
@@ -56,6 +56,8 @@ function markerLocation(){
         
 //Load the map when the page has finished loading.
 google.maps.event.addDomListener(window, 'load', initMap);
+
+
 //validates user credential saven in a cookie
 //if they do not exist the user is redirected to login.html
 function init(){
@@ -84,6 +86,23 @@ function init(){
   }
 };
 init();
+
+$(document).ready(() => {
+  var settings = {
+      url : '/get-stores',
+      method : 'GET',
+      contentType : "application/json",
+      success : (response) => {
+          appendStores(response);
+      },
+      error : (error) => {
+          console.log(error);
+      },
+  }
+
+  $.ajax(settings);
+});
+
 //Destroys cookie object
 $('#logout').on('click', (event) => {
     event.preventDefault();
@@ -180,24 +199,26 @@ $('#home').on('click', (event) => {
 //Filter stores close to some coordinates
 $('#location-find-button').on('click', (event) => {
   event.preventDefault();
-  let lon = -100.292004;
-  let lat = 25.621288;
+  let latCoord = $("#lat").val();
+  let lonCoord = $("#lng").val();
   var settings = {
     url : '/get-stores',
     method : 'GET',
     contentType : "application/json",
     success : (response) => {
-      console.log(response[0].storeLocation.coordinates[1] + " " + response[0].storeLocation.coordinates[0]);
         $.ajax({
-          url:'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lon+'&key=AIzaSyBHt_0k-RkQi4pDHhPKkkoYuJXsk1Lb1SI',
+          url:'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latCoord + ',' + lonCoord+'&key=AIzaSyBHt_0k-RkQi4pDHhPKkkoYuJXsk1Lb1SI',
           success:(res)=>{
-            console.log(res);
+            console.log(res.results[Object.keys(res.results).length-3].formatted_address);
             Object.keys(response).forEach(function(key){
-              console.log(response[key].storeLocation.coordinates[1] + " " + response[key].storeLocation.coordinates[0]);
                 $.ajax({
                   url:'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + response[key].storeLocation.coordinates[1] + ',' + response[key].storeLocation.coordinates[0]+'&key=AIzaSyBHt_0k-RkQi4pDHhPKkkoYuJXsk1Lb1SI',
                   success:(validateStore)=>{
-                    console.log(validateStore);
+                    if(validateStore.results[Object.keys(validateStore.results).length-3].formatted_address==res.results[Object.keys(res.results).length-3].formatted_address) 
+                      console.log(response[key]);
+                      //FUNCION APPEND STORES TENECESITA IR AQUI
+                      //ESTA FUNCION RECIBE UN PARAMETRO QUE ES UN TIENDA
+                      //ACCEDER A TIENDA CON response[key]
                   }
                 })
               })
@@ -206,11 +227,27 @@ $('#location-find-button').on('click', (event) => {
     },
     error : (error) => {
         console.log(error);
-    },
+    }
 }
 
 $.ajax(settings);
 });
 
-
-//https://maps.googleapis.com/maps/api/geocode/json?latlng=25.484049, -100.187026&key=AIzaSyBHt_0k-RkQi4pDHhPKkkoYuJXsk1Lb1SI
+function appendStores(stores){
+  var divWrapper = $("#inner-stores-wrapper");
+  for(var i = 0; i < stores.length ; i++){
+      divWrapper.append(`
+          <div class="col-4 product-card-wrapper">
+              <div class="card product-card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;">
+              <img src="${stores[i].storeImg}" class="card-img-top" style="min-height: 150px; max-height: 150px;">
+              <div class="card-body " align="center">
+                  <p class="card-text">${stores[i].storeName}</p>
+              </div>
+              <div class="card-body d-flex justify-content-center">
+                  <button class="btn btn-primary go-to-store-a" id="${stores[i].storeId}">Go to store</button>
+              </div>
+              </div>
+          </div>
+      `)
+  }
+};

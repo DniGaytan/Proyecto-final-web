@@ -19,6 +19,7 @@ router.post('/register-store',function(req,res,next){
             storeName : req.body.storeName,
             storeImg : req.body.storeImg,
             storeLocation:location,
+            storeDescription:req.body.storeDescription,
             storeType: req.body.storeType,
             storeManager: manager,
         };

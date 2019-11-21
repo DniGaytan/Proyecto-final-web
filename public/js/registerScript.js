@@ -34,6 +34,9 @@ $("#submit-button").on('click', (event) => {
   let emailValue = $("#email-field");
   let passwordValue = $("#password-field");
   let passwordConfirmValue = $('#password-confirmation-field');
+  if(passwordValue.val()!=passwordConfirmValue.val())
+    alert("Password Does Not Match!!!");
+  else{
     $.ajax({
       url: '/register',
       method:'POST',
@@ -46,11 +49,33 @@ $("#submit-button").on('click', (event) => {
         Password:passwordValue.val()
       }),
       success:function(res){
-        window.location.replace("../home.html");
+        data = {
+          Email:emailValue.val(),
+          Password:passwordValue.val()
+        }
+        console.log("Email: " + data.Email);
+        console.log("Password: " + data.Password);
+        settings = {
+          url : "/login" ,//Aqui va el url al backend
+          method : 'POST',
+          data : JSON.stringify(data),
+          datatype : 'JSON',
+          contentType : "application/json",
+          success : (response) => {
+            console.log("User Found");
+            window.location.replace("../home.html");
+          },
+          error : (response) => {
+            console.log("Failed to create");
+          }
+        }
+      
+        $.ajax(settings);
       },
       error:function(e){
         //console.log(e);
       }
     });
+  }
 });
 init();

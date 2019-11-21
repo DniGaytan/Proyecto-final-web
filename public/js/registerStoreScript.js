@@ -140,6 +140,7 @@ $("#submit-button").on('click', (e) => {
               contentType : "application/json",
               success : (response) => {
                 console.log(response);
+
               },
               error : (response) => {
                 console.log(response);
@@ -147,6 +148,8 @@ $("#submit-button").on('click', (e) => {
           }
 
           $.ajax(settings2);
+
+          window.location.replace("../mystores.html");
 
         },
         error : (response) => {

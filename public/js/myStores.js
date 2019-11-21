@@ -180,10 +180,29 @@ function appendStores(stores){
                   <p class="card-text">${stores[i].storeName}</p>
               </div>
               <div class="card-body d-flex justify-content-center">
-                  <button class="btn btn-primary go-to-store-a" id="${stores[i].storeId}">Go to store</button>
+                  <button class="btn btn-primary go-to-store-a" id="${stores[i]._id}">Go to store</button>
               </div>
               </div>
           </div>
       `)
   }
 };
+
+$(document).on('click', '.go-to-store-a',(e) => {
+  var storeId = e.currentTarget.id;
+
+  settings = {
+    url : '/get/' + storeId,
+    method : 'POST',
+    contentType: 'application/json',
+    success : (response) => {
+      console.log(response);
+      url = 'store.html?' + encodeURIComponent(storeId);
+      document.location.href = url;
+      setSettings(response);
+      document.cookie.CurrentStore = storeId;
+    }
+
+  }
+  $.ajax(settings);
+});

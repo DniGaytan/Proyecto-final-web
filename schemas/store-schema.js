@@ -37,9 +37,7 @@ const storeSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    Products:[{productId: {
-        type: String
-    }}]
+    Products:[String],
 },{collection:'Store'});
 
 const Store = mongoose.model('Store',storeSchema);

@@ -63,13 +63,14 @@ router.get('/get-stores', (req, res) => {
 
 //get the required store by store id
 router.post('/get/:id', jsonP, (req, res) => {
-    if(req.params.id != req.body.storeId){
+  console.log('hey');
+    if(req.params.id == ""){
         res.statusMessage = "ids does not match";
         return res.status(406).json({
             message : res.statusMessage,
         });
     }
-    store.find({storeId: req.params.storeId}).then((stores) => {
+    store.findOne({_id: req.params.id}).then((stores) => {
         return res.status(200).json(stores);
     }).catch( (e) => {
         res.statusMessage = "uups, db cannot be reached";

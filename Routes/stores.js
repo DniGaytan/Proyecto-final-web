@@ -1,5 +1,6 @@
 const express = require('express');
 const store = require('../schemas/store-schema');
+const user = require('../schemas/user-schema');
 //let uuid = require('uuid');
 let parser = require('body-parser');
 let jsonP = parser.json();
@@ -11,38 +12,40 @@ router.post('/register-store',function(req,res,next){
     var lat = req.body.lat;
     var lon =req.body.lon;
     const location = {type:'Point',coordinates:[lon,lat]};
-    var newStore = {
-        storeName : req.body.storeName,
-        storeImg : req.body.storeImg,
-        storeLocation:location,
-        storeType: req.body.storeType,
-        storeManager: req.body.storeManager,
-    };
-    store.find({storeName : newStore.storeName}).then( (stores) => {
-        if(stores.length == 0){
-            store.create(newStore).then( (store) => {
-                console.log(store.storeLocation.coordinates[0]);
-                console.log(store.storeLocation.coordinates[1]);
-                return res.status(202).json(store);
-            }).catch( (e) => {
-                res.statusMessage = "uups, db cannot be reached";
-                res.status(500).json({
-                    message : res.statusMessage,
+    let manager;
+    user.findOne({Email:req.body.storeManager},function (err,usr) {  
+        manager = usr.id;
+        var newStore = {
+            storeName : req.body.storeName,
+            storeImg : req.body.storeImg,
+            storeLocation:location,
+            storeType: req.body.storeType,
+            storeManager: manager,
+        };
+        store.find({storeName : newStore.storeName}).then( (stores) => {
+            if(stores.length == 0){
+                store.create(newStore).then( (store) => {
+                    return res.status(202).json(store);
+                }).catch( (e) => {
+                    res.statusMessage = "uups, db cannot be reached";
+                    res.status(500).json({
+                        message : res.statusMessage,
+                    });
                 });
+            }
+            else{
+                res.statusMessage = "store already exists";
+                return res.status(406).json({
+                message : res.statusMessage,
             });
-        }
-        else{
-            res.statusMessage = "store already exists";
-            return res.status(406).json({
-              message : res.statusMessage,
-           });
-        }
-    }).catch( (e) => {
-        res.statusMessage = "uups, db cannot be reached";
-                res.status(500).json({
-                    message : res.statusMessage,
-                });
-   });
+            }
+        }).catch( (e) => {
+            res.statusMessage = "uups, db cannot be reached";
+                    res.status(500).json({
+                        message : res.statusMessage,
+                    });
+        });
+    });
 });
 
 //get all the stores

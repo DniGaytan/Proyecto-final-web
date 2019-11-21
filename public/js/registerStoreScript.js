@@ -92,17 +92,21 @@ $("#submit-button").on('click', (e) => {
     let storeNameValue = $('#storeName').val();
     latCoord = $("#lat").val();
     lonCoord = $("#lng").val();
+    var re = new RegExp(name + "=([^;]+)");
+    var value = re.exec(document.cookie);
     data = {
         storeName : storeNameValue,
         storeImage : storeImage,
         lat:latCoord,
         lon:lonCoord,
-        storeType:storeType
+        storeType:storeType,
+        storeManager:value[1]
       }
       console.log(storeNameValue);
       console.log(latCoord);
       console.log(lonCoord);
       console.log(storeType);
+      console.log(data.storeManager);
     settings = {
         url : '/register-store' ,//Aqui va el url al backend
         method : 'POST',

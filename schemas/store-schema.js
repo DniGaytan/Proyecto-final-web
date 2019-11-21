@@ -35,9 +35,10 @@ const storeSchema = new mongoose.Schema({
     },
     storeManager:{
         type:String,
+        required:true
     },
     Products:[{productId: {
-        type: String,
+        type: String
     }}]
 },{collection:'Store'});
 

@@ -23,6 +23,9 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
+    Description:{
+        type:String
+    },
     Stores:[{storeId: {
         type: String,
         required:true,

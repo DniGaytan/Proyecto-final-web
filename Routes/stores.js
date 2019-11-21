@@ -13,7 +13,7 @@ router.post('/register-store',function(req,res,next){
     var lon =req.body.lon;
     const location = {type:'Point',coordinates:[lon,lat]};
     let manager;
-    user.findOne({Email:req.body.storeManager},function (err,usr) {  
+    user.findOne({Email:req.body.storeManager},function (err,usr) {
         manager = usr.id;
         var newStore = {
             storeName : req.body.storeName,
@@ -81,13 +81,14 @@ router.post('/get/:id', jsonP, (req, res) => {
 
 //get the stores by manager id
 router.post('/get-by-manager/:id', jsonP, (req, res) => {
-    if(req.params.id != req.body.managerId){
+    console.log('aqui llega');
+    if(req.params.id == ''){
         res.statusMessage = "ids does not match";
         return res.status(406).json({
             message : res.statusMessage,
         });
     }
-    store.find({storeManager: req.params.managerId}).then((stores) => {
+    store.find({storeManager: req.params.id}).then((stores) => {
         return res.status(200).json(stores);
     }).catch( (e) => {
         res.statusMessage = "uups, db cannot be reached";

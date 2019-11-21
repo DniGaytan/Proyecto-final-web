@@ -2,9 +2,10 @@
 //if they do not exist the user is redirected to login.html
 function init(){
     //gets only the value of the cookie, without the name
-    if(document.cookies != ""){
+    if(document.cookies != "" && document.cookies != undefined){
     var re = new RegExp(name + "=([^;]+)");
-    var value = re.exec(document.cookie);
+    console.log(document.cookies);
+    var value = re.exec(document.cookies);
     //ajax call to validate if user is already logged in
     $.ajax({
       url: '/validate',
@@ -17,9 +18,9 @@ function init(){
         console.log('YES');
         window.location.replace("../home.html");
       },
-      error : (response) => { 
+      error : (response) => {
         console.log('No');
-        window.location.replace("../login.html");
+        //window.location.replace("../login.html");
       }
     });
   }
@@ -47,6 +48,9 @@ $("#submit-button").on('click', (event) => {
       success:function(res){
         window.location.replace("../home.html");
       },
+      error:function(e){
+        //console.log(e);
+      }
     });
 });
 init();

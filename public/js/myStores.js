@@ -1,8 +1,11 @@
+var userId = '';
+let email;
+
 //validates user credential saven in a cookie
 //if they do not exist the user is redirected to login.html
 function init(){
   //gets only the value of the cookie, without the name
-  if(document.cookie == ""){
+  if(document.cookie == ""  || document.cookie == undefined){
     window.location.replace("../login.html");
   }
   else if(document.cookie != ""){
@@ -11,6 +14,7 @@ function init(){
     if(value[1] == undefined){
       window.location.replace("../login.html");
     }
+    email = value[1];
     //ajax call to validate if user is already logged in
     $.ajax({
       url: '/validate',
@@ -19,7 +23,7 @@ function init(){
       data:JSON.stringify({
         Email:value[1]
       }),
-      error : (response) => { 
+      error : (response) => {
         window.location.replace("../login.html");
       }
     });
@@ -29,19 +33,43 @@ function init(){
 init();
 
 $(document).ready(() => {
-  var settings = {
-      url : '/get-stores',
-      method : 'GET',
-      contentType : "application/json",
-      success : (response) => {
-          appendStores(response);
-      },
-      error : (error) => {
-          console.log(error);
-      },
+  data = {
+    email : email,
+  }
+  var settings1 = {
+    url : '/get-user-by-email/' + email,
+    method : 'POST',
+    data: JSON.stringify(data),
+    datatype: 'JSON',
+    contentType : "application/json",
+    success: (response) => {
+      console.log(response);
+      userId = response[0]._id;
+      populateUserTitle(response[0].Username);
+      var settings2 = {
+          url : '/get-by-manager/' + userId,
+          method : 'POST',
+          contentType : "application/json",
+          success : (response) => {
+              console.log(response);
+              appendStores(response);
+          },
+          error : (error) => {
+              console.log(error);
+          },
+      }
+
+      $.ajax(settings2);
+    },
+    error : (error) => {
+      console.log(error)
+
+    },
   }
 
-  $.ajax(settings);
+  $.ajax(settings1);
+
+
 });
 //Destroys cookie object
 $('#logout').on('click', (event) => {
@@ -130,6 +158,16 @@ $('#home').on('click', (event) => {
         }
       });
 });
+
+$("#create-store-submit").on('click', (e) => {
+  window.location.replace("../registerStore.html");
+});
+
+function populateUserTitle(userName){
+  var userDiv = $('#administrator-title');
+  $(userDiv).text(": " + userName);
+  console.log(userDiv);
+}
 
 function appendStores(stores){
   var divWrapper = $("#inner-stores-wrapper");

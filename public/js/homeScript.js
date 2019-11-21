@@ -2,15 +2,18 @@
 //if they do not exist the user is redirected to login.html
 function init(){
   //gets only the value of the cookie, without the name
+  console.log(document.cookie);
   if(document.cookie == ""){
     window.location.replace("../login.html");
   }
   else if(document.cookie != ""){
     var re = new RegExp(name + "=([^;]+)");
     var value = re.exec(document.cookie);
+    console.log('si llega aqui 1');
     if(value[1] == undefined){
       window.location.replace("../login.html");
     }
+    console.log('si llega aqui 2');
     //ajax call to validate if user is already logged in
     $.ajax({
       url: '/validate',
@@ -19,7 +22,8 @@ function init(){
       data:JSON.stringify({
         Email:value[1]
       }),
-      error : (response) => { 
+      error : (response) => {
+        console.log('si llega aqui 3');
         window.location.replace("../login.html");
       }
     });
@@ -40,7 +44,6 @@ $(document).ready(() => {
             console.log(error);
         },
     }
-
     $.ajax(settings);
 });
 

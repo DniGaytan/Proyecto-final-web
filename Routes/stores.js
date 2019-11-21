@@ -4,47 +4,28 @@ const user = require('../schemas/user-schema');
 //let uuid = require('uuid');
 let parser = require('body-parser');
 let jsonP = parser.json();
-const multer = require('multer');
-
-const storage=multer.diskStorage({
-    destination:function(req,file,cb){
-        cb(null,'./uploads');
-    },
-    filename:function(req,file,cb){
-        cb(null,file.originalname);
-    }
-});
-
-const upload = multer({storage:storage});
-
 
 const router = express.Router();
 
 //Registers New Store
-router.post('/register-store',upload.single('storeImg'),function(req,res,next){
-    console.log(req.file)
+router.post('/register-store',function(req,res,next){
     var lat = req.body.lat;
     var lon =req.body.lon;
     const location = {type:'Point',coordinates:[lon,lat]};
     let manager;
-    console.log(" HI" + req.body.storeManager);
     user.findOne({Email:req.body.storeManager},function (err,usr) {
-        console.log(usr);
         manager = usr.id;
-        console.log(manager);
         var newStore = {
             storeName : req.body.storeName,
-            storeImg:req.file.path,
+            storeImg : req.body.storeImg,
             storeLocation:location,
             storeType: req.body.storeType,
-            storeManager: manager
+            storeManager: manager,
         };
-        store.find({storeName:newStore.storeName}).then( (stores) => {
+        store.find({storeName : newStore.storeName}).then( (stores) => {
             if(stores.length == 0){
                 store.create(newStore).then( (store) => {
-                    console.log(store.storeImg);
                     return res.status(202).json(store);
-                    
                 }).catch( (e) => {
                     res.statusMessage = "uups, db cannot be reached";
                     res.status(500).json({

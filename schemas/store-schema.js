@@ -19,8 +19,8 @@ const storeSchema = new mongoose.Schema({
         required:true
     },
     storeImg:{
-        type:String,
-        required:true
+        data:Buffer,
+        contentType:String
     },
     storeLocation:{
         type: pointSchema,

@@ -9,7 +9,6 @@
     <meta charset="utf-8">
       <style type="text/css">
       #map{ width:700px; height: 500px; }
-      img{max-width:180px;}
       </style>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHt_0k-RkQi4pDHhPKkkoYuJXsk1Lb1SI"></script>
     <title> Store Registration </title>
@@ -39,15 +38,14 @@
       <div class="card shadow-lg p-3 mb-5 bg-white rounded storeRegister-card" >
         <div class="card-body">
           <h5 class="card-title">Store Register</h5>
-          <form enctype="multipart/form-data">
+          <form>
             <div class="form-group">
               <label for="storeName">Store Name</label>
               <input type="text" class="form-control" id="storeName" placeholder="Enter name">
             </div>
             <div class="form-group">
                 <label for="storeImage">Store Image (optional)</label>
-                <input type="file" id="inputFile" />
-                <img id="image_upload_preview" src="http://placehold.it/100x100" alt="your image" />
+                <input type="file" accept="image/*" class="form-control" id="storeImage">
             </div>
             <div class="form-group">
               <div class="input-group-prepend">

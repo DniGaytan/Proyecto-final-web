@@ -2,7 +2,7 @@
 //if they do not exist the user is redirected to login.html
 function init(){
     //gets only the value of the cookie, without the name
-    if(document.cookies != ""){
+    if(document.cookie != ""){
       var re = new RegExp(name + "=([^;]+)");
       var value = re.exec(document.cookie);
       //ajax call to validate if user is already logged in
@@ -16,10 +16,6 @@ function init(){
       success:(response) =>{
         console.log('YES');
         window.location.replace("../home.html");
-      },
-      error : (response) => { 
-        console.log('No');
-        window.location.replace("../login.html");
       }
     });
   }

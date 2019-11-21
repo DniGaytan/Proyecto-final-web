@@ -64,12 +64,15 @@ let latCoord;
 let lonCoord;
 function init(){
   //gets only the value of the cookie, without the name
-  if(document.cookies == ""){
-
+  if(document.cookie == ""){
+    window.location.replace("../login.html");
   }
-  else if(document.cookies != ""){
+  else if(document.cookie != ""){
     var re = new RegExp(name + "=([^;]+)");
     var value = re.exec(document.cookie);
+    if(value[1] == undefined){
+      window.location.replace("../login.html");
+    }
     //ajax call to validate if user is already logged in
     $.ajax({
       url: '/validate',
@@ -94,6 +97,9 @@ $("#submit-button").on('click', (e) => {
     lonCoord = $("#lng").val();
     var re = new RegExp(name + "=([^;]+)");
     var value = re.exec(document.cookie);
+    if(value[1] == undefined){
+      window.location.replace("../login.html");
+    }
     data = {
         storeName : storeNameValue,
         storeImage : storeImage,

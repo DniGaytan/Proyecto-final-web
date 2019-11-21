@@ -1,21 +1,29 @@
 //validates user credential saven in a cookie
 //if they do not exist the user is redirected to login.html
 function init(){
-      //gets only the value of the cookie, without the name
-      var re = new RegExp(name + "=([^;]+)");
-      var value = re.exec(document.cookie);
-      //ajax call to validate if user is already logged in
-      $.ajax({
-        url: '/validate',
-        method:'POST',
-        contentType:'application/json',
-        data:JSON.stringify({
-          Email:value[1]
-        }),
-        error : (response) => { 
-          window.location.replace("../login.html");
-        }
-      });
+  //gets only the value of the cookie, without the name
+  if(document.cookie == ""){
+    window.location.replace("../login.html");
+  }
+  else if(document.cookie != ""){
+    var re = new RegExp(name + "=([^;]+)");
+    var value = re.exec(document.cookie);
+    if(value[1] == undefined){
+      window.location.replace("../login.html");
+    }
+    //ajax call to validate if user is already logged in
+    $.ajax({
+      url: '/validate',
+      method:'POST',
+      contentType:'application/json',
+      data:JSON.stringify({
+        Email:value[1]
+      }),
+      error : (response) => { 
+        window.location.replace("../login.html");
+      }
+    });
+  }
 };
 
 init();
@@ -25,6 +33,9 @@ $('#logout').on('click', (event) => {
     event.preventDefault();
     var re = new RegExp(name + "=([^;]+)");
     var value = re.exec(document.cookie);
+    if(value[1] == undefined){
+      window.location.replace("../login.html");
+    }
     $.ajax({
         url: '/logout',
         method:'POST',
@@ -43,6 +54,9 @@ $('#findStores').on('click', (event) => {
     event.preventDefault();
     var re = new RegExp(name + "=([^;]+)");
     var value = re.exec(document.cookie);
+    if(value[1] == undefined){
+      window.location.replace("../login.html");
+    }
     $.ajax({
         url: '/validate',
         method:'POST',
@@ -61,6 +75,9 @@ $('#myStores').on('click', (event) => {
     event.preventDefault();
     var re = new RegExp(name + "=([^;]+)");
     var value = re.exec(document.cookie);
+    if(value[1] == undefined){
+      window.location.replace("../login.html");
+    }
     $.ajax({
         url: '/validate',
         method:'POST',
@@ -82,6 +99,9 @@ $('#home').on('click', (event) => {
     event.preventDefault();
     var re = new RegExp(name + "=([^;]+)");
     var value = re.exec(document.cookie);
+    if(value[1] == undefined){
+      window.location.replace("../login.html");
+    }
     $.ajax({
         url: '/validate',
         method:'POST',

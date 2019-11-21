@@ -7,6 +7,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/registerStore.css">
     <meta charset="utf-8">
+      <style type="text/css">
+      #map{ width:700px; height: 500px; }
+      </style>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHt_0k-RkQi4pDHhPKkkoYuJXsk1Lb1SI"></script>
     <title> Store Registration </title>
   </head>
   <body>
@@ -46,12 +50,14 @@
             <div class="form-group">
               <div class="input-group-prepend">
                 <label class="input-group-text" for="locationInput">Location:</label>
-                <select class="custom-select" id="locationInput">
-                  <option selected>Not now</option>
-                  <option id="location-opt">Use my location</option>
-                </select>
+                
               </div>
-
+              <div id="map"></div>
+              <h2>Chosen Location</h2>
+              <form method="post">
+                  <input type="text" id="lat" readonly="yes"><br>
+                  <input type="text" id="lng" readonly="yes">
+              </form>
             </div>
             <div class="form-group">
               <div class="input-group mb-3">

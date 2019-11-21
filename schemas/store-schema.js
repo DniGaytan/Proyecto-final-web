@@ -30,20 +30,15 @@ const storeSchema = new mongoose.Schema({
         type:String,
         required: true
     },
-    storeItems:{
-        type: [],
-    },
     storeDescription:{
         type: String,
     },
     storeManager:{
         type:String,
-        required: true
     },
     Products:[{productId: {
         type: String,
-        required:true,
-    }}],
+    }}]
 },{collection:'Store'});
 
 const Store = mongoose.model('Store',storeSchema);

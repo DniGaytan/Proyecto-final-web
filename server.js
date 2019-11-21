@@ -23,6 +23,7 @@ mongoose.connect('mongodb://localhost/StoreGarden',{ useUnifiedTopology: true })
 
 mongoose.Promise = global.Promise;
 
+app.use("/uploads",express.static('uploads'));
 app.use(express.static('public'));
 
 app.use(bodyParser.json());

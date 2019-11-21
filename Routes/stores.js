@@ -36,7 +36,6 @@ router.post('/register-store',upload.single('storeImg'),function(req,res,next){
             storeName : req.body.storeName,
             storeImg:req.file.path,
             storeLocation:location,
-            storeDescription:req.body.storeDescription,
             storeType: req.body.storeType,
             storeManager: manager
         };

@@ -71,7 +71,6 @@ function init(){
     if(value[1] == undefined){
       window.location.replace("../login.html");
     }
-    email = value[1];
     //ajax call to validate if user is already logged in
     $.ajax({
       url: '/validate',

@@ -102,6 +102,9 @@ $("#submit-button").on('click', (e) => {
     if(value[1] == undefined){
       window.location.replace("../login.html");
     }
+    console.log(value[1]);
+    console.log($('#image_upload_preview').attr('src', e.target.result));
+    console.log(storeImage[0].src);
     data = {
         storeName : storeNameValue,
         storeImage : storeImage,
@@ -116,12 +119,8 @@ $("#submit-button").on('click', (e) => {
         method : 'POST',
         data : JSON.stringify(data),
         datatype : 'JSON',
-        contentType : "application/json",
         success : (response) => {
-
-
           var re = new RegExp(name + "=([^;]+)");
-
           data2 = {
             email : re.exec(document.cookie)[1],
             id : response._id,
@@ -162,6 +161,6 @@ $('.custom-select').change(function (e) {
     storeType = $('.custom-select').val();
 });
 
-$(":file").change(function(e){
-    storeImage = $(":file").val();
+$("#inputFile").change(function () {
+  storeImage = $("#inputFile").val();
 });

@@ -5,6 +5,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
+const path = require('path');
 
 
 const app = express();
@@ -15,15 +16,18 @@ let stores = require('./Routes/stores');
 let products = require('./Routes/products');
 let carts = require('./Routes/carts');
 
+app.use(express.static('public'));
 
-
+app.get('/', function(req, res){
+    res.redirect('/login.html');
+});
 //se conecta a la base de datos. Si no existe, la crea
 mongoose.set('useNewUrlParser', true);
 mongoose.connect('mongodb://localhost/StoreGarden',{ useUnifiedTopology: true });
 
 mongoose.Promise = global.Promise;
 
-app.use(express.static('public'));
+
 
 app.use(bodyParser.json());
 
@@ -36,6 +40,7 @@ app.use(products);
 app.use(carts);
 
 app.use(cookieParser());
+
 
 
 app.listen(8080,function(){

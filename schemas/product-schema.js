@@ -16,6 +16,10 @@ const productSchema = new mongoose.Schema({
     productImg : {
         data: Buffer,
         contentType:String
+    },
+    storeId:{
+        type: String,
+        required: true
     }
 },{collection:'Product'});
 

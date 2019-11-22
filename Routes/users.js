@@ -25,7 +25,7 @@ router.post('/login',function(req,res){
             return res.status(404).send();
         }
 
-        res.cookie('Email',userF.Email, { maxAge: 9000000 });
+        res.cookie('Email',userF.Email, { maxAge: 90000000 });
         return res.status(200).send();
     })
 });
@@ -93,7 +93,7 @@ router.post('/push-store-to-user', jsonP, (req, res) => {
             user.find().then( (users2) => {
               console.log(users2);
             })
-      }
+        }
     ).catch( (e) => {
       console.log(e);
       return res.status(500).json();

@@ -42,7 +42,83 @@
           </div>
         </div>
     </nav>
+      
+      <!-- Add Prodcut Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form class="list-group list-group-flush">
+                    <div class="list-group-item">
+                      <input id="name" placeholder="Name:">
+                    </div>
+                    <div class="list-group-item">
+                        <input id="price" placeholder="Price:">
+                      </div>
+                      <div class="selector">
+                          <select class="custom-select" id="inputGroupSelect01">
+                            <option selected>QTY</option>
+                            <option value="1" >1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                          </select>
+                      </div>
+                  </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" id="addProduct" data-dismiss="modal">Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Update Prodcut Modal -->
+      <div class="modal fade" id="mexampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Add Product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <form class="list-group list-group-flush">
+                      <div class="list-group-item">
+                        <input id="mname" placeholder="Name:">
+                      </div>
+                      <div class="list-group-item">
+                          <input id="mprice" placeholder="Price:">
+                        </div>
+                        <div class="selector">
+                            <select class="custom-select" id="mQty">
+                              <option selected>QTY</option>
+                              <option value="1" >1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                            </select>
+                        </div>
+                    </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="modifyProduct" data-dismiss="modal">Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
+<<<<<<< HEAD
     <div class="modal fade" id="wrap-post" role="dialog" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -62,6 +138,44 @@
       </div>
     </div>
 
+=======
+        <div class="modal fade" id="modifyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Add Product</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <form class="list-group list-group-flush">
+                        <div class="list-group-item">
+                          <input id="mName" placeholder="Name:">
+                        </div>
+                        <div class="list-group-item">
+                            <input id="mPrice" placeholder="Price:">
+                          </div>
+                          <div class="selector">
+                              <select class="custom-select" id="modifyQTY">
+                                <option selected>QTY</option>
+                                <option value="1" >1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                              </select>
+                          </div>
+                      </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" id="modifyProduct" data-dismiss="modal">Add</button>
+                </div>
+              </div>
+            </div>
+          </div>
+>>>>>>> 01de0a608b8465780ba6a1f5ce64ac86b480e41a
     <script type="text/javascript" src="./js/storeScript.js"></script>
     <script type="text/javascript" src="./js/homeScript.js"></script>
     <script type="text/javascript" src="./js/cartScript.js"></script>

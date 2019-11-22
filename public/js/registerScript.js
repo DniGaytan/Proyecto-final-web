@@ -69,7 +69,7 @@ $("#submit-button").on('click', (event) => {
             console.log("Failed to create");
           }
         }
-      
+
         $.ajax(settings);
       },
       error:function(e){
@@ -78,4 +78,11 @@ $("#submit-button").on('click', (event) => {
     });
   }
 });
+
+$("#redirect-to-login-button").on('click', (e) => {
+  e.preventDefault();
+  console.log("hey");
+  document.location.href = "login.html";
+});
+
 init();

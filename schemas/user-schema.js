@@ -27,6 +27,10 @@ const userSchema = new mongoose.Schema({
         type:String
     },
     Stores:[String],
+    Cart:{
+      type:String,
+      required:true,
+    }
 },{collection:'User'});
 
 const User =  mongoose.model('User',userSchema);

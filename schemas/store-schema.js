@@ -19,7 +19,10 @@ const storeSchema = new mongoose.Schema({
         required:true
     },
     storeImg:{
-        type:String
+        type:Buffer,
+    },
+    storeImgType:{
+      type: String,
     },
     storeLocation:{
         type: pointSchema,
@@ -38,6 +41,12 @@ const storeSchema = new mongoose.Schema({
     },
     Products:[String],
 },{collection:'Store'});
+
+storeSchema.virtual('storeImgPath').get(function() {
+  if (this.storeImg != null && this.storeImgType != null){
+    return `data:${this.storeImgType};charset=utf-8;base64,${this.storeImg.toString('base64')}`;
+  }
+})
 
 const Store = mongoose.model('Store',storeSchema);
 

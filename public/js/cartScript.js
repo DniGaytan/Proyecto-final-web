@@ -4,7 +4,7 @@ $("#button-order-confirmation").on('click', () => {
 
 $(".delete-item-button").on('click', (e) => {
   var idTriggered = e.currentTarget.id;
-  var idCart = $("h3")[0].id;
+  var idCart = $(".cart-element").attr('id');
 
   var data = {
     idCart : idCart,
@@ -26,6 +26,32 @@ $(".delete-item-button").on('click', (e) => {
   }
 
   $.ajax(settings);
+});
+
+$(document).on('click', '.product-button', (e) => {
+    var productId = e.currentTarget.id;
+    var cartId = $(".cart-element").attr('id');
+
+    dat = {
+      cartId : cartId;
+    }
+
+    var settings = {
+      url : 'add-product/' + productId,
+      method : 'POST',
+      datatype : 'JSON',
+      data : JSON.stringify(data),
+      contentType : 'application/json',
+      success : (response) => {
+        updateCart(response);
+      },
+      error : (response) => {
+        console.log('error happened');
+      },
+    }
+
+    $.ajax(settings);
+
 });
 
 function updateCart(products){

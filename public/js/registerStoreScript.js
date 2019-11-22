@@ -90,10 +90,15 @@ function init(){
 
 init();
 
+$("#cancel-button").on('click', (e) => {
+  window.location.replace("../mystores.html");
+});
+
 $("#submit-button").on('click', (e) => {
     e.preventDefault();
     let storeNameValue = $('#storeName').val();
     let storeDesc = $('#description').val();
+    let storeImage = $('#storeImage').val();
     latCoord = $("#lat").val();
     lonCoord = $("#lng").val();
     var re = new RegExp(name + "=([^;]+)");
@@ -104,7 +109,7 @@ $("#submit-button").on('click', (e) => {
     }
     data = {
         storeName : storeNameValue,
-      //storeImage : storeImage,
+        storeImage : storeImage,
         lat:latCoord,
         lon:lonCoord,
         storeDescription:storeDesc,

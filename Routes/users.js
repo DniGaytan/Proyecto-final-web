@@ -108,6 +108,14 @@ router.post('/push-store-to-user', jsonP, (req, res) => {
     });
 });
 
+router.post('/add-cart', jsonP, (req, res) => {
+  user.findOne({_id : req.body.userId}).then((users) => {
+    user.updateOne({_id : users._id}, {cartId : req.body.cartId}).then((response) => {
+        console.log(response);
+    });
+  });
+});
+
 //validates that the user can actually see the page
 router.post('/validate',(req,res)=>{
     user.findOne({Email:req.body.Email},function(err,userF){

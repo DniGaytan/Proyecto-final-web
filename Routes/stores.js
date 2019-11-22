@@ -4,11 +4,13 @@ const user = require('../schemas/user-schema');
 //let uuid = require('uuid');
 let parser = require('body-parser');
 let jsonP = parser.json();
+const imageMimeTypes = ['image/jpeg', 'image/png', 'images/gif']
+
 
 const router = express.Router();
 
 //Registers New Store
-router.post('/register-store',function(req,res,next){
+router.post('/register-store',  function(req,res,next){
     var lat = req.body.lat;
     var lon =req.body.lon;
     const location = {type:'Point',coordinates:[lon,lat]};
@@ -34,6 +36,8 @@ router.post('/register-store',function(req,res,next){
             if(stores.length == 0){
                 store.create(newStore).then((store) => {
                     console.log("Entered3");
+                    console.log(req.body.storeImage);
+                    saveImg(store, req.body.storeImage);
                     return res.status(202).json(store);
                 }).catch( (e) => {
                     res.statusMessage = "uupds, db cannot be reached";
@@ -143,5 +147,16 @@ router.post('/get-by-location', jsonP, (req, res) => {
         }
         return res.status(202).json(storesReturned);
 })
+
+function saveImg(img, imgEncoded){
+  if(imgEncoded == null) {
+    return
+  }
+  var imgParsed = JSON.parse(imgEncoded);
+  if(imgParsed != null){
+    store.storeImg = new Buffer.from(imgParsed.data, 'base64');
+    store.storeImgType = 'image/jpg';
+  }
+}
 
 module.exports = router;

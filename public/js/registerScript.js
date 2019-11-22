@@ -40,6 +40,7 @@ $("#submit-button").on('click', (event) => {
     $.ajax({
       url: '/register',
       method:'POST',
+      datatype : 'JSON',
       contentType:'application/json',
       data:JSON.stringify({
         FirstName:firstname.val(),
@@ -55,8 +56,49 @@ $("#submit-button").on('click', (event) => {
         }
         console.log("Email: " + data.Email);
         console.log("Password: " + data.Password);
+
+
+        var cart = {
+          userId : res._id,
+        }
+
+        //creation of cart
+        settings2 = {
+          url : 'cart-create',
+          method : 'POST',
+          datatype : 'JSON',
+          data : JSON.stringify(cart),
+          contentType : 'application/json',
+          success: (response) => {
+
+            var data2 = {
+              userId : response.userId,
+              cartId : response._id,
+            }
+
+            settings3 = {
+              url : 'add-cart',
+              method : 'POST',
+              datatype : 'JSON',
+              data : JSON.stringify(data2),
+              contentType : 'application/json',
+              success: (response) => {
+                  console.log('it worked');
+              },
+              error: (response) => {
+                console.log('it did not worked');
+              }
+            }
+
+            $.ajax(settings3);
+
+          }
+        }
+
+        $.ajax(settings2);
+
         settings = {
-          url : "/login" ,//Aqui va el url al backend
+          url : "/login" ,
           method : 'POST',
           data : JSON.stringify(data),
           datatype : 'JSON',

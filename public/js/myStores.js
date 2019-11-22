@@ -172,6 +172,7 @@ function populateUserTitle(userName){
 function appendStores(stores){
   var divWrapper = $("#inner-stores-wrapper");
   for(var i = 0; i < stores.length ; i++){
+    console.log(stores[i]);
       divWrapper.append(`
           <div class="col-4 product-card-wrapper">
               <div class="card product-card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;">

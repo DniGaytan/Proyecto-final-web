@@ -2,10 +2,10 @@
 //if they do not exist the user is redirected to login.html
 function init(){
     //gets only the value of the cookie, without the name
-    if(document.cookies != "" && document.cookies != undefined){
+    if(document.cookie != undefined){
     var re = new RegExp(name + "=([^;]+)");
-    console.log(document.cookies);
-    var value = re.exec(document.cookies);
+    console.log(document.cookie);
+    var value = re.exec(document.cookie);
     //ajax call to validate if user is already logged in
     $.ajax({
       url: '/validate',
@@ -84,4 +84,6 @@ $("#redirect-to-login-button").on('click', (e) => {
   console.log("hey");
   document.location.href = "login.html";
 });
+
+
 init();

@@ -51,4 +51,10 @@ $("#submit-button").on('click', (event) => {
   $.ajax(settings);
 });
 
+$("#redirect-to-register-button").on('click', (e) => {
+  e.preventDefault();
+  console.log("hey");
+  document.location.href = "register.html";
+});
+
 init();

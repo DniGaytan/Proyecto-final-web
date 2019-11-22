@@ -30,7 +30,7 @@ router.post('/register-store',upload.single('storeImg'),function(req,res,next){
     console.log(" HI" + req.body.storeManager);
     user.findOne({Email:req.body.storeManager},function (err,usr) {
         console.log(usr);
-        manager = usr.id;
+        manager = usr._id;
         console.log(manager);
         var newStore = {
             storeName : req.body.storeName,
@@ -45,7 +45,7 @@ router.post('/register-store',upload.single('storeImg'),function(req,res,next){
                 store.create(newStore).then( (store) => {
                     console.log(store.storeImg);
                     return res.status(202).json(store);
-                    
+
                 }).catch( (e) => {
                     res.statusMessage = "uups, db cannot be reached";
                     res.status(500).json({

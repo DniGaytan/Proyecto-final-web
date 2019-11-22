@@ -2,7 +2,7 @@
 //if they do not exist the user is redirected to login.html
 function init(){
     //gets only the value of the cookie, without the name
-    if(document.cookie != undefined){
+    if(document.cookie != "" && document.cookie != undefined){
     var re = new RegExp(name + "=([^;]+)");
     console.log(document.cookie);
     var value = re.exec(document.cookie);
@@ -69,7 +69,7 @@ $("#submit-button").on('click', (event) => {
             console.log("Failed to create");
           }
         }
-
+      
         $.ajax(settings);
       },
       error:function(e){
@@ -78,12 +78,4 @@ $("#submit-button").on('click', (event) => {
     });
   }
 });
-
-$("#redirect-to-login-button").on('click', (e) => {
-  e.preventDefault();
-  console.log("hey");
-  document.location.href = "login.html";
-});
-
-
 init();

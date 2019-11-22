@@ -4,50 +4,39 @@ const user = require('../schemas/user-schema');
 //let uuid = require('uuid');
 let parser = require('body-parser');
 let jsonP = parser.json();
-const multer = require('multer');
-
-const storage=multer.diskStorage({
-    destination:function(req,file,cb){
-        cb(null,'./uploads');
-    },
-    filename:function(req,file,cb){
-        cb(null,file.originalname);
-    }
-});
-
-const upload = multer({storage:storage});
-
 
 const router = express.Router();
 
 //Registers New Store
-router.post('/register-store',upload.single('storeImg'),function(req,res,next){
-    console.log(req.file)
+router.post('/register-store',function(req,res,next){
     var lat = req.body.lat;
     var lon =req.body.lon;
     const location = {type:'Point',coordinates:[lon,lat]};
     let manager;
-    console.log(" HI" + req.body.storeManager);
+    console.log("This is the store managers email " + req.body.storeManager);
     user.findOne({Email:req.body.storeManager},function (err,usr) {
-        console.log(usr);
+        console.log("Entered1");
         manager = usr._id;
         console.log(manager);
         var newStore = {
             storeName : req.body.storeName,
-            storeImg:req.file.path,
+            storeImg : req.body.storeImg,
             storeLocation:location,
             storeDescription:req.body.storeDescription,
             storeType: req.body.storeType,
-            storeManager: manager
+            storeManager: manager,
         };
-        store.find({storeName:newStore.storeName}).then( (stores) => {
+        //console.log(newStore);
+        store.find({storeName : newStore.storeName}).then((stores) => {
+            console.log("Entered2");
+            console.log(stores);
+            console.log(stores.length);
             if(stores.length == 0){
-                store.create(newStore).then( (store) => {
-                    console.log(store.storeImg);
+                store.create(newStore).then((store) => {
+                    console.log("Entered3");
                     return res.status(202).json(store);
-
                 }).catch( (e) => {
-                    res.statusMessage = "uups, db cannot be reached";
+                    res.statusMessage = "uupds, db cannot be reached";
                     res.status(500).json({
                         message : res.statusMessage,
                     });

@@ -102,12 +102,9 @@ $("#submit-button").on('click', (e) => {
     if(value[1] == undefined){
       window.location.replace("../login.html");
     }
-    console.log(value[1]);
-    console.log($('#image_upload_preview').attr('src', e.target.result));
-    console.log(storeImage[0].src);
     data = {
         storeName : storeNameValue,
-        storeImage : storeImage,
+      //storeImage : storeImage,
         lat:latCoord,
         lon:lonCoord,
         storeDescription:storeDesc,
@@ -119,6 +116,7 @@ $("#submit-button").on('click', (e) => {
         method : 'POST',
         data : JSON.stringify(data),
         datatype : 'JSON',
+        contentType : "application/json",
         success : (response) => {
           var re = new RegExp(name + "=([^;]+)");
           data2 = {
@@ -127,7 +125,6 @@ $("#submit-button").on('click', (e) => {
           }
           console.log("triggered");
           console.log(data2);
-
           settings2 = {
               url : '/push-store-to-user' ,//Aqui va el url al backend
               method : 'POST',
@@ -152,7 +149,6 @@ $("#submit-button").on('click', (e) => {
           //hacemos algo.
         }
     }
-
     $.ajax(settings);
 });
 
@@ -161,6 +157,6 @@ $('.custom-select').change(function (e) {
     storeType = $('.custom-select').val();
 });
 
-$("#inputFile").change(function () {
-  storeImage = $("#inputFile").val();
+$(":file").change(function(e){
+    storeImage = $(":file").val();
 });

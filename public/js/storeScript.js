@@ -98,7 +98,7 @@ function appendStoreProducts(stores){
         let wrap = $('#inner-products-wrapper');
         wrap.append('');
         wrap.append(
-        `<div class="col-md-6 col-sm-6 col-lg-3 product-card-wrapper">
+        `<div class="col-4 product-card-wrapper">
         <div class="card product-card" style="width: 18rem;">
           <img src="https://dummyimage.com/150x150/000000/fff.png&text=${response.productName}" class="card-img-top" style="min-height: 150px; max-height: 150px;">
           <div class="card-body " align="center">
